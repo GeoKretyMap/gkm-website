@@ -1,0 +1,80 @@
+#map {
+  height: 400px;
+}
+
+/**
+ * Site
+ */
+
+.page-content {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.page-content img {
+  margin: 5px;
+}
+
+#view_map_button {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#view_map_button p {
+  margin: 10px;
+}
+#view_map_button a {
+  color: white;
+}
+
+/**
+ * Icons
+ */
+.icon > svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+/**
+ * Popup on map
+ */
+.leaflet-popup-content > h1 {
+  font-size: 16px;
+}
+
+.leaflet-popup-content > h1.missing {
+  text-decoration: line-through;
+}
+
+.leaflet-popup-content > img {
+  display: block;
+  border-radius: 12px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 5px 5px 5px #888888;
+}
+
+
+/**
+ * NoUislider
+ */
+.noUi-target {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.noUi-horizontal {
+  padding-right: 32px;
+}
+.noUi-horizontal .noUi-handle {
+  left: -1px;
+}
+.noUi-horizontal .noUi-origin  {
+  right: -32px;
+}
+
+
+
