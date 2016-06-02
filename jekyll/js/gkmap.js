@@ -175,16 +175,16 @@ function retrieve() {
   //  filter += "&newer"
   //}
   if ($("#geokrety_move_old").prop('checked') == true) {
-    filter += "&older"
+    filter += "&older=1"
   }
   if ($("#geokrety_no_move_date").prop('checked') == true) {
     filter += "&nodate=1"
   }
   if ($("#geokrety_move_ghosts").prop('checked') == false) {
-    filter += "&ghosts"
+    filter += "&ghosts=1"
   }
   if ($("#geokrety_missing").prop('checked') == true) {
-    filter += "&missing"
+    filter += "&missing=1"
   }
 
   filter += "&daysFrom=" + $('#days-min').html();
