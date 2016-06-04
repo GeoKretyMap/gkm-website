@@ -160,8 +160,8 @@ L.Control.GeoKretyFilter = L.Control.extend({
     var holder = document.createElement('div');
 
     label.appendChild(holder);
-    holder.appendChild(input);
     holder.appendChild(name);
+    holder.appendChild(input);
 
     var container = this._gkStatusList;
     container.appendChild(label);
