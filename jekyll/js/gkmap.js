@@ -291,7 +291,9 @@ function readUrl() {
         move_old = parseFloat(args[3]),
         ghost    = parseFloat(args[4]),
         missing  = parseFloat(args[5]),
-        ownername = args[6];
+        daymin   = parseFloat(args[6]),
+        daymax   = parseFloat(args[7]),
+        ownername = args[8];
     if (isNaN(zoom) || isNaN(lat) || isNaN(lon) || isNaN(move_old) || isNaN(ghost) || isNaN(missing)) {
       map.setView(initial_position, initial_zoom);
       // Ask to locate by browser
@@ -301,7 +303,7 @@ function readUrl() {
       $("#geokrety_move_old").prop('checked', move_old);
       $("#geokrety_move_ghosts").prop('checked', ghost);
       $("#geokrety_missing").prop('checked', missing);
-      $("#geokrety_ownername").val();
+      $("#geokrety_ownername").val(ownername);
       if (move_old) { slider.noUiSlider.set([null, maxRange]); }
     }
   } else {
