@@ -199,10 +199,10 @@ function retrieve() {
     filter += "&ownername=" + $('#geokrety_ownername').val();
   }
 
-  var url="https://api.gkm.kumy.org/geojson?latTL="+Math.round(bounds.getNorth() * 100) / 100
-         +"&lonTL="+Math.round(bounds.getEast() * 100) / 100
-         +"&latBR="+Math.round(bounds.getSouth() * 100) / 100
-         +"&lonBR="+Math.round(bounds.getWest() * 100) / 100
+  var url="https://api.gkm.kumy.org/geojson?latTL="+Math.round(bounds.getNorth() * 1000) / 1000
+         +"&lonTL="+Math.round(bounds.getEast() * 1000) / 1000
+         +"&latBR="+Math.round(bounds.getSouth() * 1000) / 1000
+         +"&lonBR="+Math.round(bounds.getWest() * 1000) / 1000
          +"&limit=500&json=1"+filter;
   //var url="https://api.geokretymap.org/export2.php?latTL="+bounds.getNorth()+"&lonTL="+bounds.getEast()+"&latBR="+bounds.getSouth()+"&lonBR="+bounds.getWest()+"&limit=500&json=1"+filter;
 
@@ -250,9 +250,9 @@ function writeUrl() {
   params = "#";
   params += map.getZoom();
   params += "/";
-  params += Math.round(map.getCenter().lat * 100) / 100;
+  params += Math.round(map.getCenter().lat * 1000) / 1000;
   params += "/";
-  params += Math.round(map.getCenter().lng * 100) / 100;
+  params += Math.round(map.getCenter().lng * 1000) / 1000;
   params += "/";
 
   if ($("#geokrety_move_old").prop('checked') == true) {
