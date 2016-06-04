@@ -97,7 +97,7 @@ function initmap() {
       slider.noUiSlider.set([null, savedMaxRange]);
     }
     updateSlider(slider);
-    retrieve();
+    writeUrl();
   });
 
   $("#map").height($(window).height()*0.85);
