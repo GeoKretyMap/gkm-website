@@ -190,7 +190,11 @@ function retrieve() {
   filter += "&daysFrom=" + $('#days-min').html();
   filter += "&daysTo="   + $('#days-max').html();
 
-  var url="https://api.gkm.kumy.org/geojson?latTL="+bounds.getNorth()+"&lonTL="+bounds.getEast()+"&latBR="+bounds.getSouth()+"&lonBR="+bounds.getWest()+"&limit=500&json=1"+filter;
+  var url="https://api.gkm.kumy.org/geojson?latTL="+Math.round(bounds.getNorth() * 100) / 100
+         +"&lonTL="+Math.round(bounds.getEast() * 100) / 100
+         +"&latBR="+Math.round(bounds.getSouth() * 100) / 100
+         +"&lonBR="+Math.round(bounds.getWest() * 100) / 100
+         +"&limit=500&json=1"+filter;
   //var url="https://api.geokretymap.org/export2.php?latTL="+bounds.getNorth()+"&lonTL="+bounds.getEast()+"&latBR="+bounds.getSouth()+"&lonBR="+bounds.getWest()+"&limit=500&json=1"+filter;
 
   writeUrl();
