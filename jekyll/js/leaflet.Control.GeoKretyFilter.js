@@ -16,7 +16,7 @@ L.Control.GeoKretyFilter = L.Control.extend({
     this._addItem({ marker: 'geokrety_move_old', name: 'GeoKrety moved more than 90 days ago'});
     this._addItem({ marker: 'geokrety_move_ghosts', name: 'GeoKrety present in cache', statusList: true, checked: true});
     this._addItem({ marker: 'geokrety_missing', name: 'GeoKrety reported as missing', statusList: true});
-    this._addItem({ marker: 'geokrety_no_move_date', name: 'GeoKrety with unknown move date'});
+    this._addItemOwnername();
     return this._container;
   },
 
@@ -138,6 +138,32 @@ L.Control.GeoKretyFilter = L.Control.extend({
     holder.appendChild(name);
 
     var container = obj.statusList ? this._gkStatusList : this._gkLastMovesList;
+    container.appendChild(label);
+
+    return label;
+  },
+
+  _addItemOwnername: function () {
+    var label = document.createElement('label');
+    var input;
+
+    input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'leaflet-control-geokretyfilter-selector';
+    input.id = "geokrety_ownername";
+
+    var name = document.createElement('span');
+    name.innerHTML = ' Ownername';
+
+    // Helps from preventing layer control flicker when checkboxes are disabled
+    // https://github.com/Leaflet/Leaflet/issues/2771
+    var holder = document.createElement('div');
+
+    label.appendChild(holder);
+    holder.appendChild(input);
+    holder.appendChild(name);
+
+    var container = this._gkStatusList;
     container.appendChild(label);
 
     return label;

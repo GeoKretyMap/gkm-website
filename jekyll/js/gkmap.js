@@ -75,6 +75,10 @@ function initmap() {
     retrieve();
   });
 
+  $("#geokrety_ownername").on('change', function(){
+    retrieve();
+  });
+
   // Read urls parameters
   readUrl();
 
@@ -85,7 +89,7 @@ function initmap() {
   $('#geokrety_move_old').change(function() {
     if ($(this).prop('checked') == true) {
       savedMaxRange = slider.noUiSlider.get()[1];
-  console.log(slider);
+      //console.log(slider);
       slider.noUiSlider.set([null, maxRange]);
       //origins[1].setAttribute('disabled', true);
     } else {
@@ -93,6 +97,7 @@ function initmap() {
       slider.noUiSlider.set([null, savedMaxRange]);
     }
     updateSlider(slider);
+    retrieve();
   });
 
   $("#map").height($(window).height()*0.85);
@@ -190,6 +195,10 @@ function retrieve() {
   filter += "&daysFrom=" + $('#days-min').html();
   filter += "&daysTo="   + $('#days-max').html();
 
+  if ($('#geokrety_ownername').val()) {
+    filter += "&ownername=" + $('#geokrety_ownername').val();
+  }
+
   var url="https://api.gkm.kumy.org/geojson?latTL="+Math.round(bounds.getNorth() * 100) / 100
          +"&lonTL="+Math.round(bounds.getEast() * 100) / 100
          +"&latBR="+Math.round(bounds.getSouth() * 100) / 100
@@ -241,9 +250,9 @@ function writeUrl() {
   params = "#";
   params += map.getZoom();
   params += "/";
-  params += map.getCenter().lat;
+  params += Math.round(map.getCenter().lat * 100) / 100;
   params += "/";
-  params += map.getCenter().lng;
+  params += Math.round(map.getCenter().lng * 100) / 100;
   params += "/";
 
   if ($("#geokrety_move_old").prop('checked') == true) {
@@ -268,7 +277,8 @@ function writeUrl() {
   }
 
   params += $('#days-min').html() + "/";
-  params += $('#days-max').html();
+  params += $('#days-max').html() + "/";
+  params += $('#geokrety_ownername').val();
 
 
   location.replace(params);
@@ -285,19 +295,19 @@ function readUrl() {
         lat      = parseFloat(args[1]),
         lon      = parseFloat(args[2]),
         move_old = parseFloat(args[3]),
-        move_no  = parseFloat(args[4]),
-        ghost    = parseFloat(args[5]),
-        missing  = parseFloat(args[6]);
-    if (isNaN(zoom) || isNaN(lat) || isNaN(lon) || isNaN(move_old) || isNaN(move_no) || isNaN(ghost) || isNaN(missing)) {
+        ghost    = parseFloat(args[4]),
+        missing  = parseFloat(args[5]),
+        ownername = args[6];
+    if (isNaN(zoom) || isNaN(lat) || isNaN(lon) || isNaN(move_old) || isNaN(ghost) || isNaN(missing)) {
       map.setView(initial_position, initial_zoom);
       // Ask to locate by browser
       map.locate({setView: true, maxZoom: 16});
     } else {
       map.setView(new L.LatLng(lat, lon), zoom);
       $("#geokrety_move_old").prop('checked', move_old);
-      $("#geokrety_no_move_date").prop('checked', move_no);
       $("#geokrety_move_ghosts").prop('checked', ghost);
       $("#geokrety_missing").prop('checked', missing);
+      $("#geokrety_ownername").val();
       if (move_old) { slider.noUiSlider.set([null, maxRange]); }
     }
   } else {
