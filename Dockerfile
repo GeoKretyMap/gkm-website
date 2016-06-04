@@ -1,6 +1,6 @@
 FROM jekyll/jekyll
 
-ADD jekyll /srv/jekyll
+COPY jekyll /srv/jekyll
 
 RUN jekyll build --destination /tmp/geokretymap.org
 
