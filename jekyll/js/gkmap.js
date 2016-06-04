@@ -179,12 +179,6 @@ function retrieve() {
   //if ($("#geokrety_move_recent").prop('checked') == true) {
   //  filter += "&newer"
   //}
-  if ($("#geokrety_move_old").prop('checked') == true) {
-    filter += "&older=1"
-  }
-  if ($("#geokrety_no_move_date").prop('checked') == true) {
-    filter += "&nodate=1"
-  }
   if ($("#geokrety_move_ghosts").prop('checked') == false) {
     filter += "&ghosts=1"
   }
@@ -193,7 +187,12 @@ function retrieve() {
   }
 
   filter += "&daysFrom=" + $('#days-min').html();
-  filter += "&daysTo="   + $('#days-max').html();
+
+  if ($("#geokrety_move_old").prop('checked') == true) {
+    filter += "&daysTo=-1";
+  } else {
+    filter += "&daysTo="   + $('#days-max').html();
+  }
 
   if ($('#geokrety_ownername').val()) {
     filter += "&ownername=" + $('#geokrety_ownername').val();
@@ -260,11 +259,6 @@ function writeUrl() {
   } else {
     params += "0/"
   }
-  if ($("#geokrety_no_move_date").prop('checked') == true) {
-    params += "1/"
-  } else {
-    params += "0/"
-  }
   if ($("#geokrety_move_ghosts").prop('checked') == true) {
     params += "1/"
   } else {
@@ -316,5 +310,3 @@ function readUrl() {
     map.locate({setView: true, maxZoom: 16});
   }
 }
-
-
