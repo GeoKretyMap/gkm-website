@@ -1,3 +1,6 @@
+---
+layout: blank
+---
 var map;
 var geoJsonLayer;
 var markers = L.markerClusterGroup({
@@ -198,7 +201,7 @@ function retrieve() {
     filter += "&ownername=" + $('#geokrety_ownername').val();
   }
 
-  var url="https://api.gkm.kumy.org/geojson?latTL="+Math.round(bounds.getNorth() * 1000) / 1000
+  var url="{{ site.data.gkm.api_url }}/geojson?latTL="+Math.round(bounds.getNorth() * 1000) / 1000
          +"&lonTL="+Math.round(bounds.getEast() * 1000) / 1000
          +"&latBR="+Math.round(bounds.getSouth() * 1000) / 1000
          +"&lonBR="+Math.round(bounds.getWest() * 1000) / 1000

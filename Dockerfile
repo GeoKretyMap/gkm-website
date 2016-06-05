@@ -1,6 +1,7 @@
 FROM jekyll/jekyll
 
 COPY jekyll /srv/jekyll
+COPY build.sh /usr/local/bin/
 
 USER root
-CMD [ "jekyll", "build", "--destination", "/data/geokretymap.org" ]
+CMD [ "build.sh" ]
